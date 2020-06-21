@@ -22,10 +22,11 @@ int knapsack(int W, int wt[], int val[], int n) {
    return knap[n][W];
 }
 int main() {
-   int val[] = {20, 25, 40};
-   int wt[] = {25, 20, 30};
-   int W = 50;
+   int val[] = {20,25,40};
+   int wt[] = {50,40,60};
+   int W = 60;
    int n = sizeof(val)/sizeof(val[0]);
    printf("The solution is : %d", knapsack(W, wt, val, n));
    return 0;
+}
 }

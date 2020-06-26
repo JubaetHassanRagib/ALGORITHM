@@ -5,10 +5,10 @@ int main()
 {
   int array[100], n, c, d, swap;
 
-  printf("Enter number of elements\n");
+  printf("Enter the number of elements you want to search : \n");
   scanf("%d", &n);
 
-  printf("Enter %d integers\n", n);
+  printf("Enter the %d numbers \n", n);
 
   for (c = 0; c < n; c++)
     scanf("%d", &array[c]);

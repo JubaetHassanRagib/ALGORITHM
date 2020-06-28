@@ -1,25 +1,32 @@
-#include <bits/stdc++.h>
-#include<stdio.h>
+#include<iostream>
 using namespace std;
-int notes[] = { 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 };
-int n = sizeof(notes) / sizeof(notes[0]);
-void minchange(int sum)
-{
-   vector<int> coins;
-   for (int i = n - 1; i >= 0; i--) {
-      while (sum >= notes[i]) {
-         sum -= notes[i];
-         coins.push_back(notes[i]);
+
+int minCoins(int coinList[], int n, int value) {
+   int coins[value+1];       //store minimum coins for value i
+
+   if(value == 0)
+      return 0;              //for value 0, it needs 0 coin
+
+   coins[0] = 0;
+
+   for (int i=1; i<=value; i++)
+      coins[i] = INT_MAX;            //initially all values are infinity except 0 value
+
+   for (int i=1; i<=value; i++) {      //for all values 1 to value, find minimum values
+      for (int j=0; j<n; j++)
+         if (coinList[j] <= i) {
+            int tempCoins = coins[i-coinList[j]];
+         if (tempCoins != INT_MAX && tempCoins + 1 < coins[i])
+            coins[i] = tempCoins + 1;
       }
    }
-   for (int i = 0; i < coins.size(); i++)
-      cout << coins[i] << "\t";
+   return coins[value];       //number of coins for value
 }
 
-int main()
-{
-   int n = 3253;
-   cout << "The minimum number of coins/notes that sum up " << n << " is \t ";
-   minchange(n);
+int main() {
+   int coins[] = {1, 2, 5, 10};
+   int n = 4, value;
+   cout << "Enter Value: "; cin >> value;
+   cout << "Minimum "<<minCoins(coins, n, value)<<" coins required.";
    return 0;
 }
